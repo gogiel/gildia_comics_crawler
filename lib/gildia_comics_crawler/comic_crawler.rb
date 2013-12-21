@@ -70,7 +70,9 @@ module GildiaComicsCrawler
         extracted_data.shift(2)
       end
       if extracted_data[0] =~ /^\d+\/\d+$/
-        data[:publish_date] = extracted_data.shift.split('/')
+        month, year = extracted_data.shift.split('/')
+        data[:publish_date_month] = month
+        data[:publish_date_year] = year
       end
 
       extracted_data.each do |line|
