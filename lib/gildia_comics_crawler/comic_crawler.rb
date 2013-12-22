@@ -10,7 +10,7 @@ module GildiaComicsCrawler
       @noko = download(@link)
       @data = {gildia_link: @downloader_uri}
       @data[:gildia_sklep_link] = @noko.css('#product a.p').first[:href] rescue nil
-      @data[:cover] = @noko.css('.main-article-image').first[:src] rescue nil
+      @data[:cover] = @noko.css('.main-article-image').first[:src].gsub(/200.jpg$/, '600.jpg') rescue nil
       elements = @noko.css('.widetext').children
       @data[:title] = elements.css('h1').children.first.text
 
