@@ -5,7 +5,13 @@ module GildiaComicsCrawler
 
     def all_series
       find_pages.flat_map do |page|
-        series_from_page(page)
+        series = series_from_page(page)
+        if block_given?
+          series.each do |single_series|
+            yield single_series
+          end
+        end
+        series
       end
     end
 
